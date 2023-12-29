@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::post('/login', [AuthController::class, 'actionLogin']);
 Route::controller(AuthController::class)->group(function() {
-    Route::post('login', 'actionLoginV2');
+    Route::post('login', 'actionLogin');
 });
 
 Route::post('/send-activation', [MailController::class, 'actionSendActivationMail']);

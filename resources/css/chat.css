@@ -1,0 +1,40 @@
+.container-fluid.dark #ChatSideBar {
+    background-color: #262626;
+}
+
+.container-fluid #ChatSideBar {
+    background-color: #FFFFFF;
+    color: black;
+}
+
+.chat-card:hover {
+    background-color: rgb(51, 51, 51);
+    cursor: pointer;
+}
+
+.chat-card {
+    padding: 10px;
+}
+
+#ChatSideBar #ChatLists {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.character-image {
+    max-width: 64px;
+    max-height: 64px;
+    border-radius: 50%;
+}
+
+.character-name {
+    margin: 0;
+    margin-left: 20px;
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.character-name:hover {
+    cursor: pointer;
+}

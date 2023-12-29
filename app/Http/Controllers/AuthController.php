@@ -7,54 +7,23 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Cookie;
 
 class AuthController extends Controller {
     public function login() {
-        return Inertia::render('Auth/login');
-    }
-
-    public function actionLogin(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'username'  => 'required|max:60',
-            'password'  => 'required'
-        ]); 
-        if($validator->fails()) {
-            return response()->
-            json([
-                'status'    => 401,
-                'message'   => $validator->errors()
-            ], 401);
-        }
-        $data = $validator->validated();
-        $user = Users::where('username', '=', $data['username'])->first();
-        if(empty($user)) {
-            return response()->json([
-                'status'    => 404,
-                'message'   => "User is not found!"
-            ], 404);
-        }
-
-        $hash_password = $user['password'];
-        if(!password_verify($data['password'], $hash_password)) {
-            return response()->json([
-                'status'    => 200,
-                'message'   => "Username or password is wrong try again!"
-            ], 200);
-        }
-        else if($user['is_active'] == 0) {
-            return response()->json([
-                'status'    => 200,
-                'message'   => "User is not active. Please contact your system administrator!"
-            ], 200);  
-        }
-
-        return response()->json([
-            'status'    => 200,
-            'message'   => "Login Success"
+        return Inertia::render('Auth/login', [
+            'title' => "Login Page"
         ]);
     }
 
-    public function actionLoginV2(Request $request) {
+    public function logout() {
+        Cookie::queue(Cookie::forget('credentials'));
+        // Cookie::forget('credentials');
+        return redirect('/login');
+    }
+
+    public function actionLogin(Request $request) {
         try {
             $validator = Validator::make($request->all(), [
                 'username'  => 'required|max:60',
@@ -68,7 +37,6 @@ class AuthController extends Controller {
                 ], 401);
             }
             $credentials = $request->only('username', 'password');
-            // var_dump(Auth::guard('api'));exit;
             $token = Auth::guard('api')->attempt($credentials);
             if(!$token) {
                 return response()->
@@ -85,6 +53,9 @@ class AuthController extends Controller {
                     'message'   => 'User is not active. Please contact your administrator'
                 ]);
             }
+            $encrypted_token = Crypt::encryptString($token);
+            // $encrypted_token = encrypt($token);
+            $cookie = Cookie::make('credentials', $encrypted_token, 60 * 24, '/', null, false, true);
             return response()->json([
                 'status'        => 200,
                 'message'       => 'Login Succesfully',
@@ -92,7 +63,7 @@ class AuthController extends Controller {
                     'token' => $token,
                     'type' => 'bearer',
                 ]
-            ]);
+            ])->withCookie($cookie);
         }
         catch(\Exception $err) {
             return response()->json([

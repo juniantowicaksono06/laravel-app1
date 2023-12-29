@@ -32,7 +32,9 @@ class Users extends Authenticatable implements JWTSubject {
     {
       return [
         'email'     => $this->email,
-        'username'  => $this->username
+        'username'  => $this->username,
+        'fullname'  => $this->fullname,
+        'status'    => $this->is_active == 1 ? "Active": "Not Active"
       ];
     }
 }

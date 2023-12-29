@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 /*
@@ -15,11 +16,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::middleware(['noauth.jwt'])->group(function() {
+    Route::get('/login', [AuthController::class, 'login']);
 });
 
-Route::get('/login', [AuthController::class, 'login']);
+
+Route::middleware(['auth.jwt'])->group(function() {
+    Route::get('/', [ChatController::class, 'chat']);
+    Route::get('/logout', [AuthController::class, 'logout']);
+});
+
 
 Route::get('/post/{slug}', [PostController::class, 'show']);
 

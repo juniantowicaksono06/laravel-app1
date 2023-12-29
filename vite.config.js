@@ -5,7 +5,10 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
     server: {
         port: 5174,
-        host: true
+        host: true,
+        hmr: {
+            host: 'localhost',
+        },
     },
     plugins: [
         react(), // React plugin that we installed for vite.js

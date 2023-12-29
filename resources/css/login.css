@@ -1,0 +1,27 @@
+body {
+    background-image: url('/public/img/background.jpg');
+    background-size: cover;
+}
+
+#loginCard {
+    min-width: 500px;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white;
+}
+
+#loginCard input {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    color: white;
+    border-color: skyblue;
+}
+
+#loginCard ::placeholder, #loginCard ::ms-input-placeholder {
+    color: white;
+}
+
+
+@media only screen and (max-width: 499px) {
+    #loginCard {
+        min-width: 100%;
+    }
+}
