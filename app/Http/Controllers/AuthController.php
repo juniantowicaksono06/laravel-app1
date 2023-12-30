@@ -45,7 +45,7 @@ class AuthController extends Controller {
                         'message'   => "Unauthorized"
                 ], 401);
             }
-            $user = Auth::user();
+            $user = Auth::guard('api')->user();
             // $token = Auth::login($user);
             if($user['is_active'] == 0) {
                 return response()->json([
@@ -72,5 +72,12 @@ class AuthController extends Controller {
                 'amessage'   => $err->getMessage(),
             ]);
         }
+    }
+
+    public function hash() {
+        return response()->json([
+            'status'    => 200,
+            'message'   => Hash::make("Abcd1234"),
+        ]);
     }
 }

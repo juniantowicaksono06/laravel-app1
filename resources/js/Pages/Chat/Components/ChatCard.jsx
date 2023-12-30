@@ -1,10 +1,42 @@
-
+import { useEffect } from "react"
+import { setChat, unsetChat } from "../../../State/chat"
+import { useDispatch, useSelector } from "react-redux"
 
 const ChatCard = (props) => {
+    const dispatch = useDispatch()
+    const selectedChat = useSelector((state) => state.selectedChat.value)
+    const selectChat = () => {
+        dispatch(setChat({
+            "character_id": props.character_id,
+            "character_name": props.character_name,
+            "character_pic": props.character_pic
+        }))
+        window.history.pushState('chat', null, `./`);
+    }
+
+    useEffect(() => {
+        document.addEventListener('keydown', function(event) {
+            // Check if the pressed key is the Escape key
+            if (event.key === 'Escape' || event.key === 'Esc') {
+              // Your code to handle the Escape key press
+              dispatch(unsetChat())
+            }
+        });
+
+        // if (window.history && window.history.pushState) {
+            // window.history.pushState('chat', null, './');
+        window.addEventListener('popstate', function(event) {
+            event.preventDefault()
+            dispatch(unsetChat())
+        })
+        // }
+
+    }, [])
+
     return (
         <>
-            <div className="chat-card">
-                <div className="d-flex align-items-center">
+            <div className={selectedChat['character_id'] == props.character_id ? "chat-card active" : "chat-card"} onClick={selectChat}>
+                <div className="d-flex align-items-center px-2">
                     <img src={`/img/character/${props.character_pic}`} className="character-image" alt="" />
                     <p className="character-name">{ props.character_name }</p>
                 </div>

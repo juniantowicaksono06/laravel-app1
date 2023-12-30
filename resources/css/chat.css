@@ -7,8 +7,19 @@
     color: black;
 }
 
-.chat-card:hover {
+.container-fluid.dark .chat-card:hover {
     background-color: rgb(51, 51, 51);
+    cursor: pointer;
+}
+
+.chat-card.active, .chat-card.active:hover {
+    background-color: rgb(78,172,109) !important;
+    color: white;
+}
+
+.chat-card:hover {
+    background-color: rgb(210, 210, 210);
+    color: black;
     cursor: pointer;
 }
 
@@ -21,9 +32,26 @@
     overflow-x: hidden;
 }
 
+#ChatSideBar #ChatLists::-webkit-scrollbar, #UserInput::-webkit-scrollbar {
+    width: 8px;
+}
+
+#ChatSideBar #ChatLists::-webkit-scrollbar-track, #UserInput::-webkit-scrollbar-track {
+    background-color: rgba(0,0,0,0);
+}
+
+#ChatSideBar #ChatLists::-webkit-scrollbar-thumb, #UserInput::-webkit-scrollbar-thumb {
+    background-color: #888; /* color of the thumb */
+    border-radius: 10px;
+}
+
+#UserInput::-webkit-scrollbar-thumb:hover {
+    cursor: default
+}
+
 .character-image {
-    max-width: 64px;
-    max-height: 64px;
+    max-width: 48px;
+    max-height: 48px;
     border-radius: 50%;
 }
 
@@ -31,10 +59,72 @@
     margin: 0;
     margin-left: 20px;
     cursor: default;
+    font-size: 0.85rem;
+}
+
+#ChatLists > *, #ChatHeader, .character-name, #SelectedChat > * {
     user-select: none;
     -webkit-user-select: none;
 }
 
 .character-name:hover {
     cursor: pointer;
+}
+
+div#SelectedChat {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-image: url('/public/img/chat-background.png');
+    background-color: rgb(242,242,242);
+}
+
+.container-fluid.dark div#SelectedChat {
+    background-color: rgb(0,0,0);
+}
+
+.user-chat-topbar {
+    max-height: 64px;
+    height: 64px;
+    background-color: rgba(243,243,243, 0.5);
+    color: black;
+    backdrop-filter: blur(6px);
+    position: absolute;
+    width: 100%;;
+}
+
+.container-fluid.dark div.user-chat-topbar {
+    background-color:rgba(53, 53, 53, 0.5);
+    color: white;
+}
+
+.user-chat-input {
+    position: absolute;
+    bottom: 0;
+    height: 90px;
+    width: 100%;
+    background-color: rgb(242,242,242);
+}
+
+.container-fluid.dark .user-chat-input {
+    background-color: rgb(46,46,46);
+}
+
+.container-fluid.dark #UserInput {
+    background-color: rgb(51,51,51);
+    border-color: rgb(51,51,51);
+    color: white;
+}
+
+#UserInput {
+    caret-color: rgb(78,172,109);
+    outline: none;
+    border-radius: 20px;
+    resize: none;
+}
+
+#UserInput:focus {
+    caret-color: rgb(78,172,109);
+    outline: none;
+    box-shadow: 0 0 0px #9ecaed;
 }

@@ -1,24 +1,17 @@
 import ChatCard from "./ChatCard"
-import { useEffect } from "react"
-const ChatSidebar = () => {
-    useEffect(() => {
-        const window_height = window.innerHeight
-        const sidebarHeader = document.querySelector("#ChatHeader")
-        const result = window_height - sidebarHeader.clientHeight - 60
-        document.querySelector("#ChatLists").style.maxHeight = `${result}px`
-        window.addEventListener("resize", function() {
-            const window_height = window.innerHeight
-            const sidebarHeader = document.querySelector("#ChatHeader")
-            const result = window_height - sidebarHeader.clientHeight - 60
-            document.querySelector("#ChatLists").style.maxHeight = `${result}px`
-        })
-    }, [])
+const ChatSidebar = (props) => {
     return (
         <>
-            <div className="h-100 px-4 py-4" id="ChatSideBar">
-                <h2 id="ChatHeader" className="mb-0">Chat</h2>
+            <div className="h-100 px-0 pt-4" id="ChatSideBar">
+                <div className="px-3">
+                    <h2 id="ChatHeader" className="mb-0">Chat</h2>
+                </div>
                 <div id="ChatLists" className="mt-3">
-                    <ChatCard character_pic="Alya_Cute.jpg" character_name="Alisa Mikhailovna" />
+                    { props.selectedCharacters.map((char, index) => {
+                        return (
+                            <ChatCard key={index} character_pic={`${char['character_image']}`} character_name={`${char['character_name']}`} character_id={char['_id']} />
+                        )
+                    }) }
                 </div>
             </div>
         </>
