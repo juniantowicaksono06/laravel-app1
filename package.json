@@ -14,6 +14,11 @@
         "@inertiajs/inertia-react": "^0.8.1",
         "@inertiajs/react": "^1.0.14",
         "@reduxjs/toolkit": "^2.0.1",
+        "@types/lodash": "^4.14.202",
+        "@types/node": "^20.11.10",
+        "@types/react": "^18.2.48",
+        "@types/react-dom": "^18.2.18",
+        "@types/ziggy-js": "^1.8.0",
         "@vitejs/plugin-react": "^4.2.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -21,6 +26,8 @@
         "react-router-dom": "^6.21.1",
         "react-spinners": "^0.13.8",
         "react-sweetalert2": "^0.6.0",
-        "redux": "^5.0.1"
+        "redux": "^5.0.1",
+        "ts-loader": "^9.5.1",
+        "typescript": "^5.3.3"
     }
 }

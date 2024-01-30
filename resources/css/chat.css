@@ -32,15 +32,15 @@
     overflow-x: hidden;
 }
 
-#ChatSideBar #ChatLists::-webkit-scrollbar, #UserInput::-webkit-scrollbar {
+#ChatSideBar #ChatLists::-webkit-scrollbar, #UserInput::-webkit-scrollbar, #ChatContent::-webkit-scrollbar {
     width: 8px;
 }
 
-#ChatSideBar #ChatLists::-webkit-scrollbar-track, #UserInput::-webkit-scrollbar-track {
+#ChatSideBar #ChatLists::-webkit-scrollbar-track, #UserInput::-webkit-scrollbar-track, #ChatContent::-webkit-scrollbar-track {
     background-color: rgba(0,0,0,0);
 }
 
-#ChatSideBar #ChatLists::-webkit-scrollbar-thumb, #UserInput::-webkit-scrollbar-thumb {
+#ChatSideBar #ChatLists::-webkit-scrollbar-thumb, #UserInput::-webkit-scrollbar-thumb, #ChatContent::-webkit-scrollbar-thumb {
     background-color: #888; /* color of the thumb */
     border-radius: 10px;
 }
@@ -127,4 +127,8 @@ div#SelectedChat {
     caret-color: rgb(78,172,109);
     outline: none;
     box-shadow: 0 0 0px #9ecaed;
+}
+
+#ChatContent {
+    overflow-y: auto;
 }

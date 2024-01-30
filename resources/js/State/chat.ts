@@ -1,16 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { SelectedChatState } from '../interface'
 
 export const selectedChat = createSlice({
     name: "selectedChat",
     initialState: {
-        value: {}
+        value: {} as SelectedChatState
     },
     reducers: {
-        setChat: (state, action) => {
+        setChat: (state, action: PayloadAction<SelectedChatState>) => {
             state.value = action.payload
         },
         unsetChat: (state) => {
-            state.value = {}
+            state.value = <SelectedChatState>{}
         }
     }
 })

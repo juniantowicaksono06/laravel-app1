@@ -17,7 +17,7 @@ class ChatController extends Controller {
                         'from' => 'characters',
                         'localField' => 'characters',
                         'foreignField' => '_id',
-                        'as' => 'selected_characters',
+                        'as' => 'characters',
                     ],
                 ],
             ]);

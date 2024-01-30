@@ -1,17 +1,22 @@
 import { useEffect } from "react"
 import { setChat, unsetChat } from "../../../State/chat"
+import { setChatContentHeight } from "../../../State/appView"
 import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../Store/store"
+import { AppViewState, SelectedChatState } from "../../../interface"
 
-const ChatCard = (props) => {
+const ChatCard = (props: SelectedChatState) => {
     const dispatch = useDispatch()
-    const selectedChat = useSelector((state) => state.selectedChat.value)
+    const selectedChat = useSelector<RootState, SelectedChatState>((state) => state.selectedChat.value)
+    let chatInputheight = useSelector<RootState, number>((state) => state.appView.chatInputheight)
     const selectChat = () => {
         dispatch(setChat({
             "character_id": props.character_id,
             "character_name": props.character_name,
             "character_pic": props.character_pic
         }))
-        window.history.pushState('chat', null, `./`);
+        window.history.pushState('chat', "", `./`);
+        dispatch(setChatContentHeight(window.innerHeight - chatInputheight))
     }
 
     useEffect(() => {

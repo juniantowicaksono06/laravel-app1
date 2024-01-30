@@ -18,25 +18,34 @@ const Login = (props, ref) => {
         const formData = new FormData()
         formData.append("username", loginForm.username)
         formData.append("password", loginForm.password)
-        const response = await fetch(`${API_BASE_URL}/login`, {
-            method: "POST",
-            body: formData
-        })
-        if(response.status == 200) {
-            // window.location.href = '/'
-            // const navigate = useNavigate();
-            // navigate("/")
+        try {
+            const response = await fetch(`${API_BASE_URL}/login`, {
+                method: "POST",
+                body: formData
+            })
+            if(response.status == 200) {
+                setSwalProps({
+                    show: true,
+                    position: 'top-end',
+                    timer: 2500,
+                    title: 'Login Success',
+                    showConfirmButton: false,
+                    toast: true,
+                    icon: "success",
+                    didClose: () => {
+                        window.location.href = '/'
+                    }
+                })
+            }
+        } catch (error) {
             setSwalProps({
                 show: true,
                 position: 'top-end',
                 timer: 2500,
-                title: 'Login Success',
+                title: 'Server error',
                 showConfirmButton: false,
                 toast: true,
-                icon: "success",
-                didClose: () => {
-                    window.location.href = '/'
-                }
+                icon: "danger"
             })
         }
         setLoading(false)

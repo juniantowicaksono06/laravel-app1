@@ -1,5 +1,8 @@
+import { ChatItemState } from "../../../interface"
 import ChatCard from "./ChatCard"
-const ChatSidebar = (props) => {
+const ChatSidebar = (props: {
+    selectedCharacters: ChatItemState[]
+}) => {
     return (
         <>
             <div className="h-100 px-0 pt-4" id="ChatSideBar">
@@ -7,7 +10,7 @@ const ChatSidebar = (props) => {
                     <h2 id="ChatHeader" className="mb-0">Chat</h2>
                 </div>
                 <div id="ChatLists" className="mt-3">
-                    { props.selectedCharacters.map((char, index) => {
+                    { props.selectedCharacters.map((char: ChatItemState, index: number) => {
                         return (
                             <ChatCard key={index} character_pic={`${char['character_image']}`} character_name={`${char['character_name']}`} character_id={char['_id']} />
                         )
