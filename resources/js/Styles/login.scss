@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 body {
     background-image: url('/public/img/background.jpg');
     background-size: cover;
@@ -9,14 +11,14 @@ body {
     color: white;
 }
 
-#loginCard input {
-    background-color: rgba(0, 0, 0, 0.5) !important;
-    color: white;
-    border-color: skyblue;
-}
-
 #loginCard ::placeholder, #loginCard ::ms-input-placeholder {
     color: white;
+}
+
+#loginContainer .form-control {
+    background-color: $colorDark12 !important;
+    color: $colorLight1 !important;
+    border-color: $colorLightBlue1;
 }
 
 

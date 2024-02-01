@@ -1,0 +1,174 @@
+@import './variables.scss';
+
+html, body, #app, #app > div {
+  height: 100%;
+}
+
+#loadingContainer {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: $colorDark10;
+}
+
+html, body, #app, #app > div {
+  height: 100%;
+}
+
+#mainLeftSidebar {
+  max-width: 100px;
+  width: 100px;
+  float: left;
+  height: 100%;
+}
+
+.container-fluid.dark {
+  background-color: rgb(22, 22, 22);
+
+  h1, h2, h3, h4, h5, h6, p, span, button.close-modal span i {
+    color: $colorLight1;
+  }
+
+  i {
+    color: $colorLight1;
+  }
+
+  i.menu-icon {
+    color: $colorLight1;
+  }
+}
+
+.container-fluid {
+  i.menu-icon {
+    color: $colorDark3;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, span, button.close-modal span i {
+    color: $colorDark3;
+  }
+
+  .sidebar-control {
+    background-color: $colorLight2;
+  }
+
+  .modal-header {
+    border-bottom: 1px solid $colorDark4;
+  }
+
+  .modal-footer {
+    border-top: 1px solid $colorDark4;
+  }
+
+  .menu-popup .menu-popup-list {
+    background-color: $colorLight2;
+    border: 1px solid $colorDark5;
+  }
+
+  .sidebar-control {
+    background-color: $colorLight2;
+  }
+}
+
+.container-fluid.dark .sidebar-control,
+.container-fluid.dark div.modal-content {
+  background-color: $colorDark3;
+}
+
+.container-fluid.dark .menu-popup .menu-popup-list {
+  background-color: $colorDark11;
+  border: 1px solid $colorDark5;
+}
+
+.container-fluid .menu-popup .menu-popup-list {
+  background-color: $colorLight2;
+  border: 1px solid $colorDark5;
+}
+
+#mainContent {
+  color: $colorLight1;
+  height: 100%;
+}
+
+#MobileBottomBar {
+  position: fixed;
+  bottom: 0;
+}
+
+.menu-popup {
+  position: relative;
+
+  &.left {
+    .menu-popup-list {
+      left: 15px;
+    }
+  }
+
+  &.bottom-right {
+    .menu-popup-list {
+      bottom: 100px;
+      right: 0px;
+    }
+  }
+
+  &.bottom {
+    .menu-popup-list {
+      bottom: 100px;
+      left: -150%;
+    }
+  }
+
+  .menu-popup-list {
+    position: absolute;
+    z-index: 9999;
+    padding: 0;
+    min-width: 200px;
+
+
+    .menu-item:hover {
+      background-color: $colorGreen1;
+
+      > span {
+        background-color: $colorGreen1;
+        color: $colorLight1;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+.form-control, .container-fluid.dark .form-control {
+  background-color: $colorDark12 !important;
+  color: $colorLight1 !important;
+  border-color: $colorLightBlue1;
+}
+
+.container-fluid .form-control {
+  background-color: $colorLight1 !important;
+  color: $colorDark1 !important;
+  border-color: $colorLight2;
+}
+
+.scroll-container {
+  overflow: auto;
+}
+
+@media only screen and (max-width: 992px) {
+  #mainLeftSidebar {
+    display: none;
+    float: none;
+  }
+}

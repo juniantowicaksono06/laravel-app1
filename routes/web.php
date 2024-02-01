@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CharacterController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 /*
@@ -26,8 +28,12 @@ Route::middleware(['noauth.jwt'])->group(function() {
 
 
 Route::middleware(['auth.jwt'])->group(function() {
-    Route::get('/', [ChatController::class, 'chat']);
+    Route::get('/chat', [ChatController::class, 'chat']);
+    Route::get('/', [HomeController::class, 'home']);
     Route::get('/logout', [AuthController::class, 'logout']);
+    Route::controller(CharacterController::class)->group(function() {
+        Route::get('/character/create', 'create');
+    });
 });
 
 

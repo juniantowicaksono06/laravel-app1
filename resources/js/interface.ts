@@ -1,15 +1,19 @@
 
-import { PageProps, Page, ErrorBag, Errors } from '@inertiajs/inertia'
+import { PageProps } from '@inertiajs/inertia'
+
+import { SweetAlert2Props } from "react-sweetalert2"
 
 type IconState = {
+    home: string,
     chat: string,
-    settings: string,
+    create: string,
     theme: string,
-    logout: string
+    user: string
 }
 
 interface AppViewState {
     appWidth: number,
+    appHeight: number,
     mobileBottomBarHeight: number,
     chatInputheight: number
     icon: IconState,

@@ -1,25 +1,27 @@
+@import './variables.scss';
+
 .container-fluid.dark #ChatSideBar {
-    background-color: #262626;
+    background-color: $colorDark9;
 }
 
 .container-fluid #ChatSideBar {
-    background-color: #FFFFFF;
-    color: black;
+    background-color: $colorLight1;
+    color: $colorDark1;
 }
 
 .container-fluid.dark .chat-card:hover {
-    background-color: rgb(51, 51, 51);
+    background-color: $colorDark8;
     cursor: pointer;
 }
 
 .chat-card.active, .chat-card.active:hover {
-    background-color: rgb(78,172,109) !important;
-    color: white;
+    background-color: $colorGreen1 !important;
+    color: $colorLight1;
 }
 
 .chat-card:hover {
-    background-color: rgb(210, 210, 210);
-    color: black;
+    background-color: $colorLight4;
+    color: $colorDark1;
     cursor: pointer;
 }
 
@@ -27,9 +29,19 @@
     padding: 10px;
 }
 
+#ChatSideBar {
+    position: relative;
+}
+
 #ChatSideBar #ChatLists {
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+#ChatSideBar > #AddCharacters {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
 }
 
 #ChatSideBar #ChatLists::-webkit-scrollbar, #UserInput::-webkit-scrollbar, #ChatContent::-webkit-scrollbar {
@@ -37,11 +49,11 @@
 }
 
 #ChatSideBar #ChatLists::-webkit-scrollbar-track, #UserInput::-webkit-scrollbar-track, #ChatContent::-webkit-scrollbar-track {
-    background-color: rgba(0,0,0,0);
+    background-color: $colorDark1;
 }
 
 #ChatSideBar #ChatLists::-webkit-scrollbar-thumb, #UserInput::-webkit-scrollbar-thumb, #ChatContent::-webkit-scrollbar-thumb {
-    background-color: #888; /* color of the thumb */
+    background-color: $colorDark6; /* color of the thumb */
     border-radius: 10px;
 }
 
@@ -76,26 +88,26 @@ div#SelectedChat {
     width: 100%;
     height: 100%;
     background-image: url('/public/img/chat-background.png');
-    background-color: rgb(242,242,242);
+    background-color: $colorLight3;
 }
 
 .container-fluid.dark div#SelectedChat {
-    background-color: rgb(0,0,0);
+    background-color: $colorDark1;
 }
 
 .user-chat-topbar {
     max-height: 64px;
     height: 64px;
-    background-color: rgba(243,243,243, 0.5);
-    color: black;
+    background-color: $colorDark6;
+    color: $colorDark1;
     backdrop-filter: blur(6px);
     position: absolute;
     width: 100%;;
 }
 
 .container-fluid.dark div.user-chat-topbar {
-    background-color:rgba(53, 53, 53, 0.5);
-    color: white;
+    background-color: $colorDark7;
+    color: $colorLight1;
 }
 
 .user-chat-input {
@@ -103,30 +115,30 @@ div#SelectedChat {
     bottom: 0;
     height: 90px;
     width: 100%;
-    background-color: rgb(242,242,242);
+    background-color: $colorLight3;
 }
 
 .container-fluid.dark .user-chat-input {
-    background-color: rgb(46,46,46);
+    background-color: $colorDark3;
 }
 
 .container-fluid.dark #UserInput {
-    background-color: rgb(51,51,51);
-    border-color: rgb(51,51,51);
-    color: white;
+    background-color: $colorDark8;
+    border-color: $colorDark8;
+    color: $colorLight1;
 }
 
 #UserInput {
-    caret-color: rgb(78,172,109);
+    caret-color: $colorGreen1;
     outline: none;
     border-radius: 20px;
     resize: none;
 }
 
 #UserInput:focus {
-    caret-color: rgb(78,172,109);
+    caret-color: $colorGreen1;
     outline: none;
-    box-shadow: 0 0 0px #9ecaed;
+    box-shadow: 0 0 0px $colorLightBlue1;
 }
 
 #ChatContent {

@@ -15,7 +15,7 @@ const ChatCard = (props: SelectedChatState) => {
             "character_name": props.character_name,
             "character_pic": props.character_pic
         }))
-        window.history.pushState('chat', "", `./`);
+        window.history.pushState('chat', "", `/chat`);
         dispatch(setChatContentHeight(window.innerHeight - chatInputheight))
     }
 
@@ -28,13 +28,10 @@ const ChatCard = (props: SelectedChatState) => {
             }
         });
 
-        // if (window.history && window.history.pushState) {
-            // window.history.pushState('chat', null, './');
         window.addEventListener('popstate', function(event) {
             event.preventDefault()
             dispatch(unsetChat())
         })
-        // }
 
     }, [])
 
@@ -45,7 +42,7 @@ const ChatCard = (props: SelectedChatState) => {
                     <img src={`/img/character/${props.character_pic}`} className="character-image" alt="" />
                     <p className="character-name">{ props.character_name }</p>
                 </div>
-            </div>       
+            </div>
         </>
     )
 }

@@ -4,20 +4,25 @@ import { AppViewState, IconState } from '../interface'
 export const appViewSlice = createSlice({
     name: "appView",
     initialState: {
-        appWidth: 0,
+        appWidth: window.innerWidth,
+        appHeight: window.innerHeight,
         mobileBottomBarHeight: 70,
         chatInputheight: 90,
         icon: {
+            "home": "fa-house",
             "chat": "fa-comments",
-            "settings": "fa-gear",
+            "create": "fa-plus",
             "theme": "fa-moon",
-            "logout": "fa-right-from-bracket text-dark"
+            "user": "fa-user"
         },
         chatContentHeight: 0
     } as AppViewState,
     reducers: {
         setAppWidth: (state, action: PayloadAction<number>) => {
             state.appWidth = action.payload
+        },
+        setAppHeight: (state, action: PayloadAction<number>) => {
+            state.appHeight = action.payload
         },
         setAppIcon: (state, action: PayloadAction<IconState>) => {
             state.icon = action.payload
@@ -28,5 +33,5 @@ export const appViewSlice = createSlice({
     }
 })
 
-export const { setAppWidth, setAppIcon, setChatContentHeight } = appViewSlice.actions
+export const { setAppIcon, setChatContentHeight, setAppHeight, setAppWidth } = appViewSlice.actions
 export default appViewSlice.reducer

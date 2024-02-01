@@ -1,18 +1,21 @@
-import { useState, useEffect } from "react"
-// import { useNavigate } from 'react-router-dom'
+import React, { useState } from "react"
 import Loading from '../../Components/Loading'
-import SweetAlert2 from 'react-sweetalert2'
-// import.meta.env.API_BASE_URL
+import SweetAlert2, {SweetAlert2Props} from 'react-sweetalert2'
+import '../../Styles/app.scss'
+import '../../Styles/login.scss'
 
-const Login = (props, ref) => {
-    const [swalProps, setSwalProps] = useState({})
+const Login = () => {
+    const [swalProps, setSwalProps] = useState<SweetAlert2Props>({})
     const API_BASE_URL = import.meta.env.VITE_API_BASE_URL
     const [ loginForm, setLoginForm ] = useState({
         "username": "",
         "password": ""
     })
+    const [isBusy, setIsBusy]  = useState<boolean>(false)
     const [isLoading, setLoading] = useState(false)
     const onLogin = async () => {
+        if(isBusy) return
+        setIsBusy(!isBusy)
         if(loginForm.username == "" || loginForm.password == "") return
         setLoading(true)
         const formData = new FormData()
@@ -24,7 +27,8 @@ const Login = (props, ref) => {
                 body: formData
             })
             if(response.status == 200) {
-                setSwalProps({
+                setSwalProps(prevState => ({
+                    ...prevState,
                     show: true,
                     position: 'top-end',
                     timer: 2500,
@@ -34,8 +38,27 @@ const Login = (props, ref) => {
                     icon: "success",
                     didClose: () => {
                         window.location.href = '/'
+                        setSwalProps({})
                     }
-                })
+                }))
+            }
+            else if(response.status == 403) {
+                let result = await response.json()
+
+                setSwalProps(prevState => ({
+                    ...prevState,
+                    show: true,
+                    position: 'top-end',
+                    timer: 2500,
+                    title: result['message'],
+                    showConfirmButton: false,
+                    toast: true,
+                    icon: "error",
+                    didClose: () => {
+                        setIsBusy(false)
+                        setSwalProps({})
+                    }
+                }))
             }
         } catch (error) {
             setSwalProps({
@@ -45,12 +68,17 @@ const Login = (props, ref) => {
                 title: 'Server error',
                 showConfirmButton: false,
                 toast: true,
-                icon: "danger"
+                icon: "error",
+                didClose: () => {
+                    setIsBusy(false)
+                    setSwalProps({})
+                }
             })
         }
         setLoading(false)
     }
-    const onEnter = async (event) => {
+    // Login ketika tekan enter pada input
+    const onEnter = async (event: React.KeyboardEvent) => {
         if(event.key === "Enter") {
             onLogin()
         }
@@ -64,7 +92,7 @@ const Login = (props, ref) => {
             }}>
                 <div className="card login-card" id="loginCard">
                     <div className="card-body">
-                        <h3 className="mb-3 text-center">Login Page</h3>
+                        <h3 className="mb-3 text-center text-white">Login Page</h3>
                         <div className="form-group mb-2">
                             <label htmlFor="usernameLabel">Username</label>
                             <input type="text" className="form-control" placeholder="Enter your username here" value={loginForm.username} onKeyUp={onEnter} onChange={(e) => setLoginForm((prevState) => ({

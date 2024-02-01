@@ -1,5 +1,7 @@
 import HashLoader from "react-spinners/HashLoader";
-const Login = (props) => {
+const Login = (props: {
+    isLoading: boolean
+}) => {
     const show = props.isLoading ? "d-flex" : "d-none";
     return (
         <div id="loadingContainer" className={`${show} justify-content-center align-items-center`}>
